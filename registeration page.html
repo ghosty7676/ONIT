@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIT - Register</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin:0;
+        padding:0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background:#f8f8f8;
+        color:black;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        width:100%;
+        max-width:100%;
+        background:white;
+        padding:12px 5%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        position:sticky;
+        top:0;
+        z-index:1000;
+        box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+    .navbar .logo {
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+    }
+    .navbar .logo div {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:#D4AF37;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        color:black;
+        margin-right:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+    .navbar .menu {
+        display:flex;
+        align-items:center;
+    }
+    .navbar .menu a {
+        text-decoration:none;
+        color:black;
+        font-weight:bold;
+        margin-left:20px;
+        transition:0.3s;
+    }
+    .navbar .menu a:hover {
+        color:#D4AF37;
+    }
+    .hamburger {
+        display:none;
+        flex-direction:column;
+        cursor:pointer;
+    }
+    .hamburger span {
+        width:25px;
+        height:3px;
+        background:black;
+        margin:4px 0;
+        transition:0.3s;
+    }
+
+    /* Registration Card */
+    .register-card {
+        background:white;
+        border-radius:20px;
+        padding:40px 30px;
+        max-width:450px;
+        width:100%;
+        box-shadow:0 15px 35px rgba(0,0,0,0.1);
+        text-align:center;
+        transition:0.3s;
+        margin:40px auto;
+        position:relative;
+    }
+
+    .register-card:hover {
+        box-shadow:0 20px 45px rgba(0,0,0,0.15);
+    }
+
+    .register-card h2 {
+        margin-bottom:30px;
+        color:#D4AF37;
+        font-size:28px;
+        font-weight:bold;
+    }
+
+    .register-card form input {
+        width:100%;
+        padding:14px 18px;
+        margin-bottom:18px;
+        border-radius:12px;
+        border:1px solid #ccc;
+        font-size:16px;
+        transition:0.3s;
+    }
+
+    .register-card form input:focus {
+        outline:none;
+        border-color:#D4AF37;
+        box-shadow:0 4px 15px rgba(212,175,55,0.2);
+    }
+
+    .register-card button {
+        width:100%;
+        padding:14px;
+        background:#D4AF37;
+        color:black;
+        font-weight:bold;
+        border:none;
+        border-radius:25px;
+        cursor:pointer;
+        font-size:16px;
+        box-shadow:0 6px 18px rgba(0,0,0,0.15);
+        transition:0.3s;
+    }
+
+    .register-card button:hover {
+        background:#b6952d;
+        color:white;
+        box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    }
+
+    .register-card p {
+        margin-top:20px;
+        font-size:14px;
+        color:#555;
+    }
+
+    .register-card p a {
+        color:#D4AF37;
+        text-decoration:none;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .register-card p a:hover {
+        text-decoration:underline;
+    }
+
+    /* Decorative Images */
+    .register-card::before {
+        content:"";
+        position:absolute;
+        top:-40px;
+        left:-40px;
+        width:80px;
+        height:80px;
+        background:url('https://images.unsplash.com/photo-1612831455547-dff6e26a7b28?auto=format&fit=crop&w=80&q=80') center/cover no-repeat;
+        border-radius:50%;
+        box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .register-card::after {
+        content:"";
+        position:absolute;
+        bottom:-40px;
+        right:-40px;
+        width:80px;
+        height:80px;
+        background:url('https://images.unsplash.com/photo-1601597114124-26e5be6b4f64?auto=format&fit=crop&w=80&q=80') center/cover no-repeat;
+        border-radius:50%;
+        box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    @media(max-width:500px){
+        .register-card {
+            padding:30px 20px;
+        }
+        .register-card h2 {
+            font-size:24px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">
+        <div>O</div>
+        <span style="font-size:24px; font-weight:bold;">ONIT</span>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span>eeeeeee</span>
+        <span>ww</span>
+        <span></span>
+    </div>
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="withdraw.html">Withdrawal</a>
+        <a href="ads.html">Ads Market</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html" style="background:#D4AF37; padding:6px 16px; border-radius:20px;">Register</a>
+    </div>
+</div>
+
+<!-- Registration Card -->
+<div class="register-card">
+    <h2>Create Account</h2>
+
+    <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="WhatsApp Contact" required>
+        <input type="text" placeholder="Primary Area of Residence" required>
+        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Confirm Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="login.html">Log In</a></p>
+</div>
+
+<script>
+const menu = document.querySelector('.menu');
+function toggleMenu() {
+    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+</body>
+</html>

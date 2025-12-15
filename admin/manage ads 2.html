@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIT Admin – Manage Ads</title>
+<style>
+    body {
+        margin:0;
+        font-family:Arial, sans-serif;
+        background:white;
+        color:black;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        background:black;
+        padding:12px 5%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        position:sticky;
+        top:0;
+        z-index:1000;
+        box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        color:white;
+    }
+
+    .navbar .logo {
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+    }
+
+    .navbar .logo div {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:#D4AF37;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        color:black;
+        margin-right:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .navbar .menu a {
+        text-decoration:none;
+        color:white;
+        font-weight:bold;
+        margin-left:20px;
+        transition: 0.3s;
+    }
+
+    .navbar .menu a:hover {
+        color:#D4AF37;
+    }
+
+    .container {
+        max-width:1200px;
+        margin:40px auto;
+        padding:0 20px;
+    }
+
+    h2 {
+        color:#D4AF37;
+        margin-bottom:25px;
+        text-align:center;
+    }
+
+    /* Search/filter */
+    .search-bar {
+        display:flex;
+        justify-content:center;
+        margin-bottom:30px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
+    .search-bar input, .search-bar select {
+        padding:10px 15px;
+        border-radius:10px;
+        border:1px solid #ccc;
+        font-size:16px;
+    }
+
+    .search-bar button {
+        padding:10px 20px;
+        border:none;
+        border-radius:25px;
+        background:#D4AF37;
+        color:black;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    /* Ads Grid */
+    .ads-grid {
+        display:grid;
+        grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+        gap:20px;
+    }
+
+    .ad-card {
+        background:white;
+        border-radius:15px;
+        box-shadow:0 6px 15px rgba(0,0,0,0.08);
+        overflow:hidden;
+        display:flex;
+        flex-direction:column;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .ad-card:hover {
+        transform: translateY(-8px);
+        box-shadow:0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .ad-card img {
+        width:100%;
+        height:150px;
+        object-fit:cover;
+    }
+
+    .ad-card .content {
+        padding:15px;
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+    }
+
+    .ad-card .user-info {
+        font-size:14px;
+        color:#555;
+        margin-bottom:10px;
+    }
+
+    .ad-card .actions button {
+        padding:8px 14px;
+        margin-right:10px;
+        border:none;
+        border-radius:20px;
+        cursor:pointer;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .ad-card .actions .approve {
+        background:#4CAF50;
+        color:white;
+    }
+    .ad-card .actions .reject {
+        background:red;
+        color:white;
+    }
+    .ad-card .actions .delete {
+        background:#555;
+        color:white;
+    }
+
+    @media (max-width:768px){
+        .ads-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <div>O</div>
+            <span style="font-size:24px; font-weight:bold;">ONIT Admin</span>
+        </div>
+        <div class="menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="manage-users.html">Users</a>
+            <a href="manage-ads.html">Ads</a>
+            <a href="withdrawals.html">Withdrawals</a>
+            <a href="settings.html">Settings</a>
+            <a href="login.html" style="background:#D4AF37; padding:6px 16px; border-radius:20px;">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Manage Ads</h2>
+
+        <!-- Search/Filter -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search by title or user">
+            <select>
+                <option value="">Filter by Location</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Abuja">Abuja</option>
+                <option value="Ibadan">Ibadan</option>
+            </select>
+            <select>
+                <option value="">Filter by Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <button>Search</button>
+        </div>
+
+        <!-- Ads Grid -->
+        <div class="ads-grid">
+            <div class="ad-card">
+                <img src="https://via.placeholder.com/300x150" alt="Ad 1">
+                <div class="content">
+                    <div>
+                        <p><strong>Ad Title:</strong> Lagos Special Campaign</p>
+                        <p class="user-info"><strong>User:</strong> user123 | <strong>Location:</strong> Lagos</p>
+                    </div>
+                    <div class="actions">
+                        <button class="approve">Approve</button>
+                        <button class="reject">Reject</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ad-card">
+                <img src="https://via.placeholder.com/300x150" alt="Ad 2">
+                <div class="content">
+                    <div>
+                        <p><strong>Ad Title:</strong> Abuja Promo</p>
+                        <p class="user-info"><strong>User:</strong> user456 | <strong>Location:</strong> Abuja</p>
+                    </div>
+                    <div class="actions">
+                        <button class="approve">Approve</button>
+                        <button class="reject">Reject</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more ad cards as needed -->
+        </div>
+    </div>
+</body>
+</html>

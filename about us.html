@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIT - About Us & Contact</title>
+<style>
+    body {
+        margin:0;
+        padding:0;
+        font-family: Arial, sans-serif;
+        background:white;
+        color:black;
+        overflow-x:hidden;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    /* Navbar */
+    .navbar {
+        width:100%;
+        max-width:100%;
+        background:white;
+        padding:12px 5%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        position:sticky;
+        top:0;
+        z-index:1000;
+        box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+    .navbar .logo {
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+    }
+    .navbar .logo div {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:#D4AF37;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        color:black;
+        margin-right:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .navbar .logo div:hover {
+        transform: scale(1.1);
+        box-shadow:0 8px 22px rgba(0,0,0,0.25);
+    }
+    .navbar .menu {
+        display:flex;
+        align-items:center;
+    }
+    .navbar .menu a {
+        text-decoration:none;
+        color:black;
+        font-weight:bold;
+        margin-left:20px;
+        transition:0.3s;
+    }
+    .navbar .menu a:hover {
+        color:#D4AF37;
+    }
+    .hamburger {
+        display:none;
+        flex-direction:column;
+        cursor:pointer;
+    }
+    .hamburger span {
+        width:25px;
+        height:3px;
+        background:black;
+        margin:4px 0;
+        transition:0.3s;
+    }
+
+    /* Card styles */
+    .card {
+        max-width:900px;
+        width:90%;
+        margin:30px auto;
+        padding:25px 20px;
+        background:white;
+        border-radius:20px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        transition:0.3s;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .card:hover {
+        transform:translateY(-5px);
+        box-shadow:0 12px 25px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+        color:#D4AF37;
+        margin-top:0;
+        font-size:28px;
+        margin-bottom:15px;
+    }
+
+    .card p {
+        font-size:16px;
+        line-height:1.6;
+        color:#333;
+    }
+
+    .card img {
+        max-width:100%;
+        border-radius:15px;
+        margin-bottom:15px;
+    }
+
+    .contact-channels p {
+        margin:5px 0;
+    }
+
+    @media (max-width:768px){
+        .navbar .menu {
+            display:none;
+            flex-direction:column;
+            width:100%;
+            text-align:center;
+            background:white;
+            position:absolute;
+            top:60px;
+            left:0;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+        .navbar .menu a {
+            margin:10px 0;
+        }
+        .hamburger {
+            display:flex;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">
+        <div>O</div>
+        <span style="font-size:24px; font-weight:bold;">ONIT</span>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="withdraw.html">Withdrawal</a>
+        <a href="ads.html">Ads Market</a>
+        <a href="about.html" style="background:#D4AF37; padding:6px 16px; border-radius:20px;">About Us</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</div>
+
+<!-- About ONIT -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80" alt="About ONIT">
+    <h2>About ONIT</h2>
+    <p>ONIT is a platform that empowers users to earn money by sharing advertisements on social media platforms effortlessly. We aim to simplify digital marketing and create a fair earning ecosystem for everyone.</p>
+</div>
+
+<!-- About Team -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1554774853-d0e38f9c4e15?auto=format&fit=crop&w=800&q=80" alt="Our Team">
+    <h2>About Our Team</h2>
+    <p>Our team is composed of experienced developers, marketers, and innovators who are passionate about connecting people with opportunities. We are committed to providing a seamless experience for our users and advertisers alike.</p>
+</div>
+
+<!-- Products & Services -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1581092795366-3ad5b994d1a4?auto=format&fit=crop&w=800&q=80" alt="Products & Services">
+    <h2>Our Products & Services</h2>
+    <p>We provide a platform where users can earn by sharing ads on social media. Advertisers get access to targeted audiences, analytics, and effective marketing solutions. Our products are designed to be simple, scalable, and highly effective.</p>
+</div>
+
+<!-- Policy -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1581092335309-8f2068cf3b06?auto=format&fit=crop&w=800&q=80" alt="Policy">
+    <h2>Our Policy</h2>
+    <p>ONIT values transparency and integrity. All user and advertiser data is protected. We enforce strict anti-fraud measures and ensure fair payout systems. Our policies are designed to foster trust within the community.</p>
+</div>
+
+<!-- Terms and Conditions -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1581092334910-11d5b5e1dc47?auto=format&fit=crop&w=800&q=80" alt="Terms & Conditions">
+    <h2>Terms & Conditions</h2>
+    <p>By using ONIT, users agree to abide by our terms, which include responsible ad sharing, truthful information, and adherence to platform rules. Advertisers must provide authentic and legal advertising content. Violations may result in suspension or account termination.</p>
+</div>
+
+<!-- Contact Channels -->
+<div class="card contact-channels">
+    <img src="https://images.unsplash.com/photo-1591696205602-1f2b7fc0dc5b?auto=format&fit=crop&w=800&q=80" alt="Contact Us">
+    <h2>Contact Us</h2>
+    <p>Email: support@onit.com</p>
+    <p>Phone: +234 800 000 0000</p>
+    <p>WhatsApp: +234 800 000 0001</p>
+    <p>Instagram: @onit_official</p>
+    <p>Facebook: facebook.com/onit</p>
+</div>
+
+<script>
+    const menu = document.querySelector('.menu');
+    function toggleMenu() {
+        menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+</script>
+
+</body>
+</html>

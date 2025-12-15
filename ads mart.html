@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIT - Ads Market</title>
+<style>
+    /* Base settings */
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', Arial, sans-serif;
+        background: #fafafa;
+        color: black;
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    /* NAVBAR (unchanged as requested) */
+    .navbar {
+        width: 100%;
+        background:white;
+        padding:12px 5%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        position:sticky;
+        top:0;
+        z-index:1000;
+        box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .navbar .logo {
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+    }
+
+    .navbar .logo div {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:#D4AF37;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        color:black;
+        margin-right:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .navbar .menu a {
+        text-decoration:none;
+        color:black;
+        font-weight:bold;
+        margin-left:20px;
+    }
+
+    .hamburger {
+        display:none;
+        flex-direction:column;
+        cursor:pointer;
+    }
+
+    .hamburger span {
+        width:25px;
+        height:3px;
+        background:black;
+        margin:4px 0;
+    }
+
+    /* Location Selector */
+    .location-selector {
+        max-width: 500px;
+        width: 90%;
+        margin:25px auto;
+        text-align:center;
+    }
+
+    .location-selector select {
+        padding:12px 15px;
+        border-radius:25px;
+        border:1px solid #bbb;
+        font-size:16px;
+        cursor:pointer;
+        width: 100%;
+        background:white;
+        box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    /* CATEGORY TITLE */
+    .category-title {
+        font-size:22px;
+        font-weight:bold;
+        padding-left:25px;
+        margin-top:25px;
+        color:#333;
+    }
+
+    /* ADS GRID */
+    .ads-container {
+        display:grid;
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+        gap:20px;
+        padding:20px;
+    }
+
+    .ad-card {
+        background:white;
+        border-radius:18px;
+        box-shadow:0 10px 20px rgba(0,0,0,0.08);
+        overflow:hidden;
+        transition:0.3s;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .ad-card:hover {
+        transform: translateY(-6px);
+        box-shadow:0 14px 28px rgba(0,0,0,0.15);
+    }
+
+    .ad-card img {
+        width:100%;
+        height:170px;
+        object-fit:cover;
+    }
+
+    .ad-card .content {
+        padding:15px;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .ad-card .content p {
+        font-weight:600;
+        margin-bottom:10px;
+    }
+
+    .ad-card button {
+        padding:10px 20px;
+        border:none;
+        background:#D4AF37;
+        color:black;
+        font-weight:bold;
+        border-radius:20px;
+        cursor:pointer;
+        margin-top:auto;
+        box-shadow:0 4px 12px rgba(0,0,0,0.1);
+        transition:0.3s;
+    }
+
+    .ad-card button:hover {
+        box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+        .navbar .menu {
+            display:none;
+            flex-direction:column;
+            width:100%;
+            text-align:center;
+            background:white;
+            position:absolute;
+            top:60px;
+            left:0;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .navbar .menu a {
+            margin:10px 0;
+        }
+
+        .hamburger {
+            display:flex;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <div>O</div>
+            <span style="font-size:24px; font-weight:bold;">ONIT</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="withdraw.html">Withdrawal</a>
+            <a href="ads.html">Ads Market</a>
+            <a href="login.html">Login</a>
+            <a href="register.html" style="background:#D4AF37; padding:6px 16px; border-radius:20px;">Register</a>
+        </div>
+    </div>
+
+    <!-- Location Selector -->
+    <div class="location-selector">
+        <select id="locationSelect" onchange="filterByLocation()">
+            <option value="">Select Your Location</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Abuja">Abuja</option>
+            <option value="Ibadan">Ibadan</option>
+            <option value="PH">Port Harcourt</option>
+            <option value="Enugu">Enugu</option>
+        </select>
+    </div>
+
+    <!-- CATEGORY: Business -->
+    <div class="category-title">🏢 Business Ads</div>
+    <div class="ads-container" id="businessAds"></div>
+
+    <!-- CATEGORY: Food -->
+    <div class="category-title">🍔 Food & Restaurants</div>
+    <div class="ads-container" id="foodAds"></div>
+
+    <!-- CATEGORY: Fashion -->
+    <div class="category-title">👗 Fashion & Lifestyle</div>
+    <div class="ads-container" id="fashionAds"></div>
+
+    <!-- CATEGORY: Tech -->
+    <div class="category-title">💻 Tech & Gadgets</div>
+    <div class="ads-container" id="techAds"></div>
+
+<script>
+    const menu = document.querySelector('.menu');
+    function toggleMenu() {
+        menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+
+    /* AD DATA */
+    const ads = {
+        business: [
+            { title: "Lagos Business Promo", image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg", location:"Lagos" },
+            { title: "Abuja Real Estate Launch", image: "https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg", location:"Abuja" }
+        ],
+        food: [
+            { title:"Lagos Shawarma Ad", image:"https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", location:"Lagos" },
+            { title:"Ibadan Restaurant Promo", image:"https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg", location:"Ibadan" }
+        ],
+        fashion:[
+            { title:"Lagos Fashion Week", image:"https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg", location:"Lagos" },
+            { title:"Abuja Luxury Clothing", image:"https://images.pexels.com/photos/6311393/pexels-photo-6311393.jpeg", location:"Abuja" }
+        ],
+        tech:[
+            { title:"Tech Gadget Promo", image:"https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg", location:"Lagos" },
+            { title:"Phone Sales Ad", image:"https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg", location:"PH" }
+        ]
+    };
+
+    function loadAds() {
+        renderCategory(ads.business, "businessAds");
+        renderCategory(ads.food, "foodAds");
+        renderCategory(ads.fashion, "fashionAds");
+        renderCategory(ads.tech, "techAds");
+    }
+
+    function renderCategory(list, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        list.forEach(ad=>{
+            container.innerHTML += `
+                <div class="ad-card">
+                    <img src="${ad.image}">
+                    <div class="content">
+                        <p>${ad.title}</p>
+                        <button onclick="downloadAd('${ad.image}')">Download Ad</button>
+                    </div>
+                </div>
+            `;
+        })
+    }
+
+    function filterByLocation() {
+        const loc = document.getElementById('locationSelect').value;
+        Object.keys(ads).forEach(cat=>{
+            const filtered = ads[cat].filter(ad=> ad.location===loc || loc==="");
+            renderCategory(filtered, cat+"Ads");
+        });
+    }
+
+    loadAds();
+
+    function downloadAd(url){
+        const link=document.createElement('a');
+        link.href=url;
+        link.download="ONIT_Ad.jpg";
+        link.click();
+        alert("Ad downloaded! Share to earn.");
+    }
+</script>
+
+</body>
+</html>

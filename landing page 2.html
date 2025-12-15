@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ONIT - Earn by Sharing Ads</title>
+
+    <style>
+        /* All CSS inline + internal (no external files) */
+
+        /* Make page responsive and animated */
+        * {
+            box-sizing: border-box;
+            transition: 0.3s ease;
+        }
+
+        /* Buttons hover effect */
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Logo hover */
+        .logo:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Responsive text scaling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px !important;
+            }
+
+            h2 {
+                font-size: 22px !important;
+            }
+
+            .card {
+                padding: 25px !important;
+            }
+
+            .hero {
+                height: 40vh !important;
+            }
+
+            .btn {
+                display: block !important;
+                margin: 10px auto !important;
+                width: 85%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            h1 {
+                font-size: 28px !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; background:white; color:black;">
+    <!-- NAVBAR HERE -->
+   <!-- PREMIUM NAVBAR -->
+<div style="
+    width:100%;
+    background:white;
+    padding:12px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    transition: background 0.3s ease;
+">
+
+    <!-- Logo -->
+    <div style="display:flex; align-items:center; cursor:pointer;">
+        <div style="
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            background:#D4AF37;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            color:black;
+            margin-right:10px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        " class="logo">
+            O
+        </div>
+        <span style="font-size:24px; font-weight:bold; color:black;">ONIT</span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="menu" style="display:flex; gap:20px; align-items:center;">
+        <a href="#" style="text-decoration:none; color:black; font-weight:bold; position:relative;">Home</a>
+        <a href="C:\Users\user\Desktop\ONIT\dashboardprofile.html" style="text-decoration:none; color:black; font-weight:bold;">Dashboard</a>
+        <a href="C:\Users\user\Desktop\ONIT\ads mart.html" style="text-decoration:none; color:black; font-weight:bold;">Ads Market</a>
+        <a href="C:\Users\user\Desktop\ONIT\withdrawal page.html" style="text-decoration:none; color:black; font-weight:bold;">Withdrawal</a>
+        <a href="C:\Users\user\Desktop\ONIT\login page.html" style="text-decoration:none; color:black; font-weight:bold;">Login</a>
+        <a href="C:\Users\user\Desktop\ONIT\registeration page.html" style="
+            text-decoration:none;
+            background:#D4AF37;
+            color:black;
+            padding:8px 22px;
+            border-radius:20px;
+            font-weight:bold;
+        ">Register</a>
+        <!-- Dark Mode Toggle -->
+        <span id="darkToggle" style="
+            margin-left:20px; 
+            cursor:pointer; 
+            padding:6px 12px; 
+            border:1px solid #D4AF37; 
+            border-radius:12px;
+            font-size:14px;
+            font-weight:bold;
+            color:#D4AF37;
+        ">Dark Mode</span>
+    </div>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <div class="hamburger" onclick="toggleMenu()" style="
+        width:35px;
+        height:28px;
+        display:none;
+        flex-direction:column;
+        justify-content:space-between;
+        cursor:pointer;
+    ">
+        <div style="height:4px; background:black; border-radius:2px;"></div>
+        <div style="height:4px; background:black; border-radius:2px;"></div>
+        <div style="height:4px; background:black; border-radius:2px;"></div>
+    </div>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" style="
+    display:none;
+    flex-direction:column;
+    background:white;
+    padding:15px 5%;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+">
+    <a href="#" style="padding:10px 0; text-decoration:none; color:black; font-weight:bold;">Home</a>
+    <a href="dashboard.html" style="padding:10px 0; text-decoration:none; color:black; font-weight:bold;">Dashboard</a>
+    <a href="ads.html" style="padding:10px 0; text-decoration:none; color:black; font-weight:bold;">Ads Market</a>
+    <a href="withdraw.html" style="padding:10px 0; text-decoration:none; color:black; font-weight:bold;">Withdrawal</a>
+    <a href="login.html" style="padding:10px 0; text-decoration:none; color:black; font-weight:bold;">Login</a>
+    <a href="register.html" style="
+        margin-top:5px;
+        background:#D4AF37;
+        padding:10px 0;
+        text-align:center;
+        border-radius:20px;
+        text-decoration:none;
+        color:black;
+        font-weight:bold;
+    ">Register</a>
+    <span id="darkToggleMobile" style="
+        margin-top:10px;
+        cursor:pointer;
+        padding:6px 12px;
+        border:1px solid #D4AF37;
+        border-radius:12px;
+        font-size:14px;
+        font-weight:bold;
+        color:#D4AF37;
+        text-align:center;
+        display:inline-block;
+    ">Dark Mode</span>
+</div>
+
+<script>
+    // Hamburger toggle
+    function toggleMenu() {
+        var menu = document.getElementById("mobileMenu");
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.style.background = document.body.style.background === 'black' ? 'white' : 'black';
+        document.body.style.color = document.body.style.color === 'white' ? 'black' : 'white';
+    }
+
+    document.getElementById("darkToggle").onclick = toggleDarkMode;
+    document.getElementById("darkToggleMobile").onclick = toggleDarkMode;
+</script>
+
+<style>
+    /* Hover animations */
+    .menu a:hover {
+        color: #D4AF37;
+        transition: 0.3s;
+    }
+
+    .logo:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .menu {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: flex !important;
+        }
+    }
+</style>
+
+
+    <!-- Hero Section -->
+    <div class="hero" style="
+        width:100%;
+        height:60vh;
+        background: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80') 
+        center/cover no-repeat;
+    ">
+    </div>
+
+    <!-- Logo + Title Section -->
+    <div style="text-align:center; margin-top:-60px;">
+
+        <!-- Logo Placeholder -->
+        <div class="logo" style="
+            width:120px; 
+            height:120px; 
+            background:#D4AF37; 
+            border-radius:50%; 
+            margin:0 auto;
+            display:flex; 
+            align-items:center; 
+            justify-content:center;
+            font-size:22px;
+            font-weight:bold;
+            color:black;
+            cursor:pointer;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        ">
+            LOGO
+        </div>
+
+        <h1 style="font-size:40px; margin-top:15px; font-weight:bold;">ONIT</h1>
+        <p style="font-size:18px; max-width:520px; margin:0 auto 40px; line-height:1.6;">
+            Earn money instantly by sharing simple ads across your social platforms.
+            Zero stress. Zero barriers. Just tap, post, and earn.
+        </p>
+    </div>
+
+    <!-- Main Content Card -->
+    <div style="max-width:900px; margin:0 auto; padding:20px;">
+
+        <div class="card" style="
+            background:white;
+            border-radius:20px;
+            padding:35px;
+            box-shadow:0 12px 25px rgba(0,0,0,0.10);
+            text-align:center;
+        ">
+
+            <h2 style="margin-top:0; font-size:26px; font-weight:bold;">Welcome to ONIT</h2>
+
+            <p style="font-size:16px; line-height:1.7; max-width:650px; margin:0 auto 25px; color:#444;">
+                Join the fast-growing community of people who earn daily income simply by posting ads on WhatsApp,
+                Instagram, TikTok, Facebook, and more.
+                ONIT makes digital earning simple, fair, and accessible to everyone.
+            </p>
+
+            <!-- Action Buttons -->
+            <div style="margin-top:25px;">
+                <a href="login.html"
+                    class="btn"
+                    style="
+                    display:inline-block; 
+                    background:#D4AF37; 
+                    color:black; 
+                    padding:14px 32px; 
+                    border-radius:30px; 
+                    text-decoration:none; 
+                    font-weight:bold; 
+                    margin-right:15px;">
+                    Log In
+                </a>
+
+                <a href="register.html"
+                    class="btn"
+                    style="
+                    display:inline-block; 
+                    background:black; 
+                    color:white; 
+                    padding:14px 32px; 
+                    border-radius:30px; 
+                    text-decoration:none; 
+                    font-weight:bold;">
+                    Create Account
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <p style="text-align:center; margin-top:40px; color:#777; font-size:14px;">
+            © 2025 ONIT. All rights reserved.
+        </p>
+
+    </div>
+
+</body>
+
+</html>

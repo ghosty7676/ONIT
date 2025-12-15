@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIT Admin - Manage Users</title>
+<style>
+body { margin:0; font-family:Arial, sans-serif; background:#fafafa; }
+
+/* NAVBAR */
+.navbar {
+    width:100%; background:white;
+    padding:12px 5%; display:flex;
+    align-items:center; justify-content:space-between;
+    box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    position:sticky; top:0; z-index:1000;
+}
+
+.navbar .logo {
+    display:flex; align-items:center;
+}
+
+.navbar .logo div {
+    width:50px; height:50px; background:#D4AF37;
+    border-radius:50%; display:flex;
+    align-items:center; justify-content:center;
+    color:black; font-weight:bold;
+}
+
+/* Search Bar */
+.search-box {
+    padding:20px 5%;
+    display:flex;
+    justify-content:center;
+}
+.search-box input {
+    width:100%; max-width:500px;
+    padding:12px 15px; border-radius:25px;
+    border:1px solid #ccc; font-size:16px;
+}
+
+/* Users Table */
+.table-container {
+    padding:20px 5%;
+}
+table {
+    width:100%; border-collapse:collapse;
+    background:white; border-radius:12px;
+    overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.10);
+}
+th, td {
+    padding:15px; text-align:left; font-size:15px;
+}
+th {
+    background:#D4AF37; color:black;
+}
+tr:nth-child(even) {
+    background:#f8f8f8;
+}
+
+.badge {
+    padding:5px 12px; border-radius:12px; font-weight:bold; font-size:13px;
+}
+.active { background:#c4f7c4; color:#0b700b; }
+.suspended { background:#ffcaca; color:#b10000; }
+
+.action-btn {
+    padding:7px 15px; border-radius:15px;
+    border:none; cursor:pointer; font-weight:bold;
+}
+.suspend-btn { background:red; color:white; }
+.activate-btn { background:green; color:white; }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">
+        <div>O</div>
+        <span style="margin-left:10px; font-size:22px; font-weight:bold;">ONIT Admin</span>
+    </div>
+
+    <div class="menu">
+        <a href="admin-dashboard.html" style="margin-right:20px; font-weight:bold;">Dashboard</a>
+        <a href="admin-users.html" style="margin-right:20px; font-weight:bold;">Manage Users</a>
+        <a href="#" style="font-weight:bold; color:red;">Logout</a>
+    </div>
+</div>
+
+<!-- Search -->
+<div class="search-box">
+    <input type="text" placeholder="Search users by name, email, or location...">
+</div>
+
+<!-- Table -->
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Name</th><th>Email</th><th>Status</th><th>Earnings</th><th>Actions</th>
+        </tr>
+
+        <tr>
+            <td>John Martins</td>
+            <td>johnmartins@example.com</td>
+            <td><span class="badge active">Active</span></td>
+            <td>₦12,000</td>
+            <td>
+                <button class="action-btn suspend-btn">Suspend</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Gloria Ade</td>
+            <td>gloriaade@example.com</td>
+            <td><span class="badge suspended">Suspended</span></td>
+            <td>₦3,200</td>
+            <td>
+                <button class="action-btn activate-btn">Activate</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>
