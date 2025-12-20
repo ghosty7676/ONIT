@@ -3,22 +3,23 @@
  * @module routes/index
  */
 
-const express = require("express");
+import express from "express";
+import { getConnect, getDisconnect } from "../controllers/AuthController.js";
 
 const router = express.Router();
-
-const AuthController = require("../controllers/AuthController");
 
 /**
  * Route for connecting to a user.
  * @name GET /connect
  * @function
  */
-router.get("/connect", AuthController.getConnect);
+router.get("/connect", getConnect);
 
 /**
  * Route for disconnecting from a user.
  * @name GET /disconnect
  * @function
  */
-router.get("/disconnect", AuthController.getDisconnect);
+router.get("/disconnect", getDisconnect);
+
+export default router;

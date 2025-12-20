@@ -1,7 +1,7 @@
 import sha1 from "sha1";
 import { v4 as uuidv4 } from "uuid";
-import redisClient from "../utils/redis";
-import dbClient from "../utils/db";
+import redisClient from "../utils/redis.js";
+import dbClient from "../utils/db.js";
 
 async function getConnect(req, res) {
   if (!req.headers.authorization) {
