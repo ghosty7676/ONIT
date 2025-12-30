@@ -6,32 +6,35 @@ const { Pool } = pkg;
  */
 class DBClient {
   constructor() {
-    const host = process.env.DB_HOST || "localhost";
-    const port = process.env.DB_PORT || 27017;
-    const database = process.env.DB_DATABASE || "onit_db";
-    const user = process.env.DB_USER;
-    const password = process.env.DB_PASSWORD;
-
-    const uri = `postgres://${host}:${port}/${database}`;
-    this.client = new Pool({ host, port, user, password, database });
-
-    this.connect();
+    this.pool = new Pool({
+      host: process.env.DB_HOST || "localhost",
+      port: Number(process.env.DB_PORT) || 5432,
+      database: process.env.DB_DATABASE || "onit_db",
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+    });
   }
 
   /**
    * Connects to the MongoDB database.
    */
-  connect() {
+  async connect() {
     try {
-      this.client.on("connect", () => {
-        console.log("Connected to database");
-      });
+      const client = await this.pool.connect();
+      console.log("Connected to Pg database");
+      client.release();
     } catch (error) {
-      console.error("Failed to connect to database:", error);
+      console.error("Failed to connect to database:", error.message);
+      process.exit(1);
     }
+  }
+
+  query(text, params) {
+    return this.pool.query(text, params);
   }
 }
 
 const dbClient = new DBClient();
+await dbClient.connect();
 
 export default dbClient;
