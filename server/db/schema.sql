@@ -7,7 +7,7 @@ CREATE TABLE users (
     role TEXT NOT NULL CHECK (role IN ('advertiser', 'promoter', 'admin')),
     password_has TEXT NOT NULL,
     is_active BOOLEAN DEFAULT true,
-    created_at TIMESTAMPTZ DEFAULT now()
+    created_at TIMESTAMPTZ DEFAULT now(),
     updated_at TIMESTAMPTZ DEFAULT now()
 );
 
@@ -21,7 +21,6 @@ CREATE TABLE ads (
     media_type TEXT NOT NULL CHECK (media_type IN ('image', 'video')),
     reward_per_view NUMERIC(10, 2) NOT NULL,
     max_views INTEGER NOT NULL,
-    start_date DATE NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     status TEXT NOT NULL DEFAULT 'active'
