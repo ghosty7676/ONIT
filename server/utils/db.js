@@ -7,16 +7,16 @@ const { Pool } = pkg;
 class DBClient {
   constructor() {
     this.pool = new Pool({
-      host: process.env.DB_HOST || "localhost",
-      port: Number(process.env.DB_PORT) || 5432,
-      database: process.env.DB_DATABASE || "onit_db",
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      database: process.env.DB_DATABASE,
       user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      password: String(process.env.DB_PASSWORD),
     });
   }
 
   /**
-   * Connects to the MongoDB database.
+   * Connects to the Postgres database.
    */
   async connect() {
     try {
