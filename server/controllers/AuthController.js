@@ -4,6 +4,7 @@ import redisClient from "../utils/redis.js";
 import dbClient from "../utils/db.js";
 
 async function getConnect(req, res) {
+  console.log(req.headers.authorization);
   if (!req.headers.authorization) {
     res.status(401).json({ error: "Unauthorized" });
   } else {
@@ -48,7 +49,4 @@ async function getDisconnect(req, res) {
   }
 }
 
-module.exports = {
-  getConnect,
-  getDisconnect,
-};
+export { getConnect, getDisconnect };
