@@ -5,7 +5,6 @@
 
 import express from "express";
 import { getConnect, getDisconnect } from "../controllers/AuthController.js";
-import { healthCheck } from "../controllers/healthCheck.js";
 
 const router = express.Router();
 
@@ -22,7 +21,5 @@ router.get("/connect", getConnect);
  * @function
  */
 router.get("/disconnect", getDisconnect);
-
-router.get("/health", healthCheck);
 
 export default router;
