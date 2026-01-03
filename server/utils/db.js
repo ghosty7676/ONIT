@@ -13,7 +13,6 @@ class DBClient {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
     });
-    console.log(this.pool);
   }
 
   /**
@@ -30,12 +29,13 @@ class DBClient {
     }
   }
 
+  async disconnect() {
+    await this.pool.end();
+  }
+
   query(text, params) {
     return this.pool.query(text, params);
   }
 }
 
-const dbClient = new DBClient();
-await dbClient.connect();
-
-export default dbClient;
+export default DBClient;

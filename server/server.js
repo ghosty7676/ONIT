@@ -1,18 +1,29 @@
-import "./config/env.js";
+import env from "./config/env.js";
 
 import express from "express";
 import router from "./routes/index.js";
 import redisClient from "./utils/redis.js";
-import dbClient from "./utils/db.js";
+import DBClient from "./utils/db.js";
 
 console.log("ENV LOADED:", process.env.DB_USER);
 
 const app = express();
 
-const port = parseInt(process.env.PORT, Number) || 5000;
+const dbClient = new DBClient({
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  database: env.DB_NAME,
+  user: env.DB_USER,
+  password: env.DB_PASSWORD,
+});
+
+await dbClient.connect();
+
 app.use(express.json({ limit: "50mb" }));
 app.use("/", router);
 
-app.listen(port, () => {
-  console.log(`Server running on ${port}`);
+app.listen(env.PORT, () => {
+  console.log(`Server running on ${env.PORT}`);
 });
+
+export { dbClient };
