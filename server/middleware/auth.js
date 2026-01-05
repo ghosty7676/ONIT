@@ -1,5 +1,4 @@
-import redisClient from "../utils/redis";
-import dbClient from "../server";
+import { dbClient, redisClient } from "../server.js";
 
 export async function auth(req, res, next) {
   const token = req.headers["x-token"];
