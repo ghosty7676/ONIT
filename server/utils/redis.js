@@ -3,6 +3,7 @@ import redis from "redis";
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
+    this.client.connect();
 
     this.client.on("error", (err) => {
       console.error(`Redis client error: ${err}`);
@@ -14,7 +15,7 @@ class RedisClient {
    * @returns {boolean} True if Redis client is connected, false otherwise
    */
   isAlive() {
-    return this.client.connected;
+    return this.client.isOpen;
   }
 
   /**
@@ -72,6 +73,4 @@ class RedisClient {
 }
 
 // Create and export an instance of RedisClient
-const redisClient = new RedisClient();
-
-export default redisClient;
+export default RedisClient();
