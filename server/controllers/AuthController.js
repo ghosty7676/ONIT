@@ -49,7 +49,7 @@ export async function register(req, res) {
  * POST /auth/login
  */
 
-async function login(req, res) {
+export async function login(req, res) {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -85,6 +85,19 @@ async function login(req, res) {
     token,
     role: user.role,
   });
+}
+
+/**
+ * POST /auth/logout
+ */
+
+export async function logout(req, res) {
+  const token = req.headers["x-token"];
+  if (token) {
+    await redisClient.del(`auth_${token}`);
+  }
+
+  return res.status(204).end();
 }
 
 async function getConnect(req, res) {
