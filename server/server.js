@@ -2,7 +2,7 @@ import env from "./config/env.js";
 
 import express from "express";
 import router from "./routes/index.js";
-import redisClient from "./utils/redis.js";
+import RedisClient from "./utils/redis.js";
 import DBClient from "./utils/db.js";
 
 console.log("ENV LOADED:", process.env.DB_USER);
@@ -19,6 +19,8 @@ const dbClient = new DBClient({
 
 await dbClient.connect();
 
+const redisClient = new RedisClient();
+
 app.use(express.json({ limit: "50mb" }));
 app.use("/", router);
 app.get("/health", async (_, res) => {
@@ -34,4 +36,4 @@ app.listen(env.PORT, () => {
   console.log(`Server running on ${env.PORT}`);
 });
 
-export { dbClient };
+export { dbClient, redisClient };

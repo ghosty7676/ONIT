@@ -73,4 +73,4 @@ class RedisClient {
 }
 
 // Create and export an instance of RedisClient
-export default RedisClient();
+export default RedisClient;
