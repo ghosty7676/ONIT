@@ -1,8 +1,49 @@
+import bcrypt from "bcrypt";
 import sha1 from "sha1";
 import { v4 as uuidv4 } from "uuid";
 import redisClient from "../utils/redis.js";
 import dbClient from "../utils/db.js";
 
+const SALT_ROUNDS = 10;
+const SESSION_TTL = 60 * 60 * 24;
+
+/**
+ * POST /auth/register
+ */
+
+export async function register(req, res) {
+  const { email, phone, password, location } = req.body;
+
+  if (!email || !phone || !password) {
+    return res.status(400).json({ error: "Missing required fileds" });
+  }
+
+  const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+
+  try {
+    const result = await dbClient.query(
+      `
+
+      INSERT INTO users (id, email, phone, password_hash, location)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id, email, role
+      `,
+      [uuidv4(), email, phone, passwordHash, location || null]
+    );
+
+    return res.status(201).json({
+      message: "User registered successfully",
+      user: result.row[0],
+    });
+  } catch (err) {
+    if (err.code === "23505") {
+      return res.status(409).json({ error: "Email or phone already exists" });
+    }
+
+    console.error(err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
 async function getConnect(req, res) {
   if (!req.headers.authorization) {
     res.status(401).json({ error: "Unauthorized" });
