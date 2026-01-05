@@ -44,6 +44,49 @@ export async function register(req, res) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
+
+/**
+ * POST /auth/login
+ */
+
+async function login(req, res) {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Missing credentials" });
+  }
+
+  const result = dbClient.query(
+    `
+    SELECT id, password_hash, role, is_blocked FROM users WHERE email = $1
+    `,
+    [email]
+  );
+
+  const user = result.row[0];
+
+  if (!user) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
+  if (user.is_blocked) {
+    return res.status(403).json({ error: "Account is blocked" });
+  }
+
+  const isValid = await bcrypt.compare(password, user.password_hash);
+  if (!isValid) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
+  const token = uuidv4();
+  await redisClient.set(` auth_${token}`, user.id, SESSION_TTL);
+
+  return res.status(200).json({
+    token,
+    role: user.role,
+  });
+}
+
 async function getConnect(req, res) {
   if (!req.headers.authorization) {
     res.status(401).json({ error: "Unauthorized" });
