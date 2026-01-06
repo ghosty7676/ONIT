@@ -24,7 +24,7 @@ export async function register(req, res) {
     const result = await dbClient.query(
       `
 
-      INSERT INTO users (id, email, phone, password_hash, location)
+      INSERT INTO users (id, email, phone, password_has, location)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING id, email, role
       `,
@@ -58,7 +58,7 @@ export async function login(req, res) {
 
   const result = dbClient.query(
     `
-    SELECT id, password_hash, role, is_blocked FROM users WHERE email = $1
+    SELECT id, password_has, role, is_blocked FROM users WHERE email = $1
     `,
     [email]
   );
