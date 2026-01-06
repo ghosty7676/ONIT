@@ -24,15 +24,7 @@ class RedisClient {
    * @returns {Promise<string | null>} The value for the key or null if the key doesn't exist
    */
   async get(key) {
-    return new Promise((resolve, reject) => {
-      this.client.get(key, (err, reply) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(reply);
-        }
-      });
-    });
+    return this.client.get(key);
   }
 
   /**
@@ -42,16 +34,8 @@ class RedisClient {
    * @param {number} duration - The expiration duration in seconds
    * @returns {Promise<void>}
    */
-  async set(key, value, duration) {
-    return new Promise((resolve, reject) => {
-      this.client.set(key, value, "EX", duration, (err, reply) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(reply);
-        }
-      });
-    });
+  async set(key) {
+    return history.client.set(key);
   }
 
   /**
@@ -60,15 +44,7 @@ class RedisClient {
    * @returns {Promise<void>}
    */
   async del(key) {
-    return new Promise((resolve, reject) => {
-      this.client.del(key, (err, reply) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(reply);
-        }
-      });
-    });
+    return this.client.del(key);
   }
 }
 

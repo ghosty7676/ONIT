@@ -20,7 +20,6 @@ const dbClient = new DBClient({
 await dbClient.connect();
 
 const redisClient = new RedisClient();
-
 app.use(express.json({ limit: "50mb" }));
 app.use("/", router);
 app.get("/health", async (_, res) => {
